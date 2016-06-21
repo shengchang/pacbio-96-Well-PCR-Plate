@@ -1,17 +1,35 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngMessages']);
 
+/**
+ * Object representing a Well
+ * @param letter
+ * @param column
+ * @constructor
+ */
 function Well(letter, column) {
   this.letter = letter;
   this.column = column;
+  this.time = undefined;
+  this.name = undefined;
 }
 
+/**
+ * Color manager to generate random color for each new key
+ * @returns {{getColor: getColor}}
+ * @constructor
+ */
 var ColorManager = function() {
   var colors = {};
 
+  // Chars of the Hexadecimal
   var letters = '0123456789ABCDEF'.split('');
+
+  /**
+   * Generate a random color
+   * @returns {string} color formatted "#XXXXXX" where X is hexadecimal character
+   */
   var generateColor = function() {
     var color = '#';
     for (var i = 0; i < 6; i++ ) {
@@ -21,6 +39,11 @@ var ColorManager = function() {
   };
 
   return {
+    /**
+     * Return the color associated to the key if exist, or generate a new one
+     * @param key
+     * @returns {string} Color formatted "#XXXXXX"
+     */
     getColor: function(key) {
       if(colors.hasOwnProperty(key)) return colors[key];
       var color = generateColor();
@@ -30,14 +53,23 @@ var ColorManager = function() {
   }
 };
 
+/**
+ * Main and only controller of this simple app
+ */
 myApp.controller("main", ["$scope", function($scope) {
   var colorManager = ColorManager();
 
+  /**
+   * Give the color to display for a Well
+   * @param well
+   * @returns {string} Color formatted "#XXXXXX"
+   */
   $scope.getColor = function(well) {
     if(!well.name) return "#fff";
     return colorManager.getColor(well.name);
   };
 
+  // The restriction on the plate
   $scope.form = {
     letters: ['A','B','C','D','E','F','G','H'],
     columns: [1,2,3,4,5,6,7,8,9,10,11,12],
@@ -47,7 +79,13 @@ myApp.controller("main", ["$scope", function($scope) {
 
   $scope.editedWell = new Well('A',1);
 
-  // Init the plate
+  // Watch the updates of editedWell to select the right Well in the plate
+  $scope.$watch("editedWell", function(newValue, oldValue) {
+    $scope.plate[oldValue.letter][oldValue.column].selected = false;
+    $scope.plate[newValue.letter][newValue.column].selected = true;
+  }, true);
+
+  // Init the plate based on the form data
   var plate = {};
   $scope.form.letters.forEach(function(letter) {
     plate[letter] = {};
@@ -69,7 +107,8 @@ myApp.controller("main", ["$scope", function($scope) {
    * Save the well defined in the for at the right location in the plate
    */
   $scope.setWell = function() {
-    $scope.plate[$scope.editedWell.letter][$scope.editedWell.column] = $scope.editedWell;
+    $scope.editedWell.selected = true;
+    $scope.plate[$scope.editedWell.letter][$scope.editedWell.column] = angular.copy($scope.editedWell);
   };
 
   /**
