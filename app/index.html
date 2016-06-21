@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="app.css">
+</head>
+<body ng-app="myApp">
+
+  <div class="container" ng-controller="main">
+    <div class="plate">
+
+      <!-- Form to set a well -->
+      <form class="well-association">
+        <div class="form-group">
+
+          <!-- Location of the plate to edit -->
+          <label>Location</label>
+          <div class="row">
+            <div class="col-xs-3">
+              <select class="form-control" name="letter" ng-model="editedWell.letter"
+                      ng-options="letter for letter in form.letters">
+              </select>
+            </div>
+            <div class="col-xs-3">
+              <select class="form-control" name="column" ng-model="editedWell.column"
+                      ng-options="column for column in form.columns">
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Reaction time (minutes)</label>
+          <input class="form-control" type="number"
+                 min="{{form.time.min}}" max="{{form.time.max}}"
+                 ng-model="editedWell.time"/>
+        </div>
+        <div class="form-group">
+          <label>Sample name</label>
+          <input class="form-control" type="text"
+                 maxlength="{{form.name.max}}"
+                 ng-model="editedWell.name"
+          />
+        </div>
+        <a class="btn btn-default" href="#" ng-click="setWell()" role="button">Save Well</a>
+      </form>
+
+      <!-- Display of the plate -->
+      <table>
+        <thead>
+          <td></td>
+          <td ng-repeat="c in form.columns" ng-bind="c" class="header"></td>
+        </thead>
+        <tr ng-repeat="(letter,columns) in plate">
+          <td ng-bind="letter" class="header"></td>
+          <td ng-repeat="(index,well) in columns">
+            <span class="well-cell" ng-click="getWell(well)"></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

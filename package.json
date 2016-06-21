@@ -1,0 +1,21 @@
+{
+  "name": "PacificBioscience",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A starter project for AngularJS",
+  "repository": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^1.2.0",
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server ./app"
+  },
+  "dependencies": {
+    "bower": "^1.7.9"
+  }
+}
