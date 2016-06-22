@@ -43,7 +43,9 @@
             <label>Reaction time (minutes)</label>
             <input name="time" class="form-control" type="number"
                    min="{{form.time.min}}" max="{{form.time.max}}"
-                   ng-model="editedWell.time"/>
+                   ng-model="editedWell.time"
+                   ng-model-options="{allowInvalid: true}"
+            />
             <div ng-messages="wellForm.time.$error" role="alert" class="text-danger">
               <div ng-message="min">Time must be at least 5 minutes</div>
               <div ng-message="max">Time must be maximum 90 minutes</div>
@@ -54,12 +56,16 @@
             <input class="form-control" type="text"
                    maxlength="{{form.name.max}}"
                    ng-model="editedWell.name"
+                   ng-model-options="{allowInvalid: true}"
             />
             <div ng-messages="wellForm.time.$error" role="alert">
               <div ng-message="maxlength">Sample name must be maximum 64 characters</div>
             </div>
           </div>
-          <a class="btn btn-default" href="#" ng-disabled="wellForm.$invalid" ng-click="setWell()" role="button">Save</a>
+          <a class="btn btn-default" href="#"
+             ng-disabled="wellForm.$invalid"
+             ng-click="wellForm.$valid && setWell()"
+             role="button">Save</a>
           <a class="btn btn-warning" href="#" ng-click="clearWell()" role="button">Clear</a>
         </form>
       </div>

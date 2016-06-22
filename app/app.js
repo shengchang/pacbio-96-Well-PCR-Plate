@@ -115,8 +115,7 @@ myApp.controller("main", ["$scope", function($scope) {
    * Clear and save the well at the plate location
    */
   $scope.clearWell = function() {
-    $scope.editedWell.time = undefined;
-    $scope.editedWell.name = undefined;
+    $scope.editedWell = new Well($scope.editedWell.letter, $scope.editedWell.column);
     $scope.setWell();
   }
   
