@@ -83,7 +83,9 @@
               <span class="well-cell"
                     ng-click="getWell(well)"
                     ng-class="{selected: well.selected}"
-                    ng-style="{'background-color': getColor(well)}"></span>
+                    ng-style="{'background-color': getColor(well)}">
+                <span class="reaction-time" ng-bind="well.time"></span>
+              </span>
             </td>
           </tr>
         </table>

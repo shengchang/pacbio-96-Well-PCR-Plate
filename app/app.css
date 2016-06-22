@@ -16,10 +16,19 @@ form {
   display: inline-block;
   border-radius: 100%;
   border: 2px solid black;
-  width: 40px;
-  height: 40px;
+  width: 52px;
+  height: 52px;
   cursor: pointer; }
   .plate .well-cell.selected {
-    border: 4px solid yellow; }
+    border-color: red; }
+  .plate .well-cell .reaction-time {
+    border-radius: 100%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    margin-left: 24px;
+    text-align: center;
+    background: white; }
 
 /*# sourceMappingURL=app.css.map */
