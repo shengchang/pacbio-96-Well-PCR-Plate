@@ -1,6 +1,8 @@
 # Project for PacificBioScience
 
-You've been tasked with writing an app that will allow a scientist to input sample information associated with a 96-well PCR plate (see schematic here:http://www.cellsignet.com/media/plates/96.jpg). Write an AngularJS-based single page front-end web app which does the following:
+## Description
+
+You've been tasked with writing an app that will allow a scientist to input sample information associated with a 96-well PCR plate (see schematic here:<http://www.cellsignet.com/media/plates/96.jpg>). Write an AngularJS-based single page front-end web app which does the following:
 
 1. Renders a blank schematic of the 96-well plate (outline and row/column headers)
 2. Provides the following entry fields to associate information with a well on the plate:
@@ -18,3 +20,8 @@ You've been tasked with writing an app that will allow a scientist to input samp
 * Partial credit will be afforded review, if you use a grid widget to represent the plate
 * Provide a link to your solution
 * How would you go about testing your design and code
+
+## How to run the project
+
+1. To run the project run the command `npm start`. It will install all dependency and start the server. To see the result go on <http://localhost:8080>.
+2. To run the tests, run the command `npm test`. It will install the dependency and run the full set of tests.
