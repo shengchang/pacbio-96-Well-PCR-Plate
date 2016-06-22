@@ -53,11 +53,14 @@ var ColorManager = function() {
   }
 };
 
+myApp.provider('ColorManager', function() {
+  this.$get = ColorManager;
+});
+
 /**
  * Main and only controller of this simple app
  */
-myApp.controller("main", ["$scope", function($scope) {
-  var colorManager = ColorManager();
+var MainController = function($scope, ColorManager) {
 
   /**
    * Give the color to display for a Well
@@ -66,7 +69,7 @@ myApp.controller("main", ["$scope", function($scope) {
    */
   $scope.getColor = function(well) {
     if(!well.name) return "#fff";
-    return colorManager.getColor(well.name);
+    return ColorManager.getColor(well.name);
   };
 
   // The restriction on the plate
@@ -118,5 +121,8 @@ myApp.controller("main", ["$scope", function($scope) {
     $scope.editedWell = new Well($scope.editedWell.letter, $scope.editedWell.column);
     $scope.setWell();
   }
-  
-}]);
+
+};
+
+
+myApp.controller("main", ["$scope", "ColorManager", MainController]);
