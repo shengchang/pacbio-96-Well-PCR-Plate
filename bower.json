@@ -1,12 +1,14 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
-  "version": "0.0.0",
-  "homepage": "",
+  "name": "PacificBiosciences",
+  "private": false,
+  "version": "0.1.0",
+  "description": "A coding challenge project for PacificBiosciences",
+  "repository": "https://github.com/cgorrieri/pacbio-96-Well-PCR-Plate",
   "license": "MIT",
-  "private": true,
+  "homepage": "",
   "dependencies": {
     "angular": "~1.5.0",
-    "angular-messages": "^1.5.7"
+    "angular-messages": "^1.5.7",
+    "bootstrap": "^3.3.6"
   }
 }
